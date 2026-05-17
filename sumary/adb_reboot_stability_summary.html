@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ADB Reboot Stability — Test Summary</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', monospace; background: #1e1e1e; color: #d4d4d4; padding: 32px; }
+  h1 { color: #569cd6; font-size: 1.6em; margin-bottom: 6px; }
+  .subtitle { color: #6a9955; margin-bottom: 28px; font-size: 0.9em; }
+
+  /* Overview cards */
+  .cards { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+  .card { background: #252526; border-radius: 8px; padding: 16px 22px; min-width: 160px; border-top: 3px solid #3e3e42; }
+  .card.green  { border-color: #4ec9b0; }
+  .card.red    { border-color: #f44747; }
+  .card.blue   { border-color: #569cd6; }
+  .card.yellow { border-color: #dcdcaa; }
+  .card-label { font-size: 0.75em; color: #858585; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+  .card-value { font-size: 1.8em; font-weight: bold; color: #d4d4d4; }
+  .card.green  .card-value { color: #4ec9b0; }
+  .card.red    .card-value { color: #f44747; }
+  .card.blue   .card-value { color: #9cdcfe; }
+
+  /* Run overview table */
+  h2 { color: #9cdcfe; font-size: 1.1em; margin: 24px 0 10px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 0.88em; }
+  th { background: #2d2d2d; color: #9cdcfe; padding: 9px 14px; text-align: left; border-bottom: 2px solid #3e3e42; white-space: nowrap; }
+  td { padding: 8px 14px; border-bottom: 1px solid #2a2a2a; vertical-align: top; }
+  tr:hover td { background: #2a2a2a; }
+  .badge { border-radius: 4px; padding: 2px 9px; font-size: 0.85em; white-space: nowrap; }
+  .badge-pass  { background: #0e4d3a; color: #4ec9b0; }
+  .badge-fail  { background: #4d1010; color: #f44747; }
+  .badge-abort { background: #3a2a00; color: #dcdcaa; }
+  .pct-good { color: #4ec9b0; }
+  .pct-warn { color: #dcdcaa; }
+  .pct-bad  { color: #f44747; }
+
+  /* Cycle detail tables */
+  .run-block { background: #252526; border-radius: 8px; padding: 18px 20px; margin-bottom: 24px; }
+  .run-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+  .run-title { color: #569cd6; font-size: 1em; font-weight: bold; }
+  .run-meta  { color: #6a9955; font-size: 0.82em; }
+  .cycle-table td:first-child { color: #858585; width: 60px; }
+  tr.c-pass td:nth-child(2) { color: #4ec9b0; }
+  tr.c-fail td:nth-child(2) { color: #f44747; }
+  .note-fail { color: #f44747; font-size: 0.85em; }
+
+  footer { margin-top: 32px; color: #555; font-size: 0.8em; }
+</style>
+</head>
+<body>
+
+<h1>ADB Reboot Stability — Test Summary</h1>
+<div class="subtitle">Device: bbc3d4d2 &nbsp;|&nbsp; Generated: 2026-05-17</div>
+
+<!-- ── Overview cards ── -->
+<div class="cards">
+  <div class="card blue">
+    <div class="card-label">Total Runs</div>
+    <div class="card-value">4</div>
+  </div>
+  <div class="card blue">
+    <div class="card-label">Total Cycles</div>
+    <div class="card-value">51</div>
+  </div>
+  <div class="card green">
+    <div class="card-label">Total Pass</div>
+    <div class="card-value">36</div>
+  </div>
+  <div class="card red">
+    <div class="card-label">Total Fail</div>
+    <div class="card-value">5</div>
+  </div>
+  <div class="card yellow">
+    <div class="card-label">Overall Pass Rate</div>
+    <div class="card-value">90.2%</div>
+  </div>
+  <div class="card green">
+    <div class="card-label">Typical Boot-to-ADB</div>
+    <div class="card-value">33 s</div>
+  </div>
+</div>
+
+<!-- ── Run overview table ── -->
+<h2>Run Overview</h2>
+<table>
+  <tr>
+    <th>Log File</th>
+    <th>Started</th>
+    <th>Method</th>
+    <th>Iterations</th>
+    <th>Pass</th>
+    <th>Fail</th>
+    <th>Pass Rate</th>
+    <th>Avg Online (s)</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>adb_reboot_stability_20260517_071138.log</td>
+    <td>07:11:38</td>
+    <td>adb reboot</td>
+    <td>10</td>
+    <td>0</td>
+    <td>1</td>
+    <td class="pct-bad">0%</td>
+    <td>—</td>
+    <td><span class="badge badge-abort">ABORTED cycle 1</span></td>
+  </tr>
+  <tr>
+    <td>adb_reboot_stability_20260517_071720.log</td>
+    <td>07:17:20</td>
+    <td>Alpaca TAC</td>
+    <td>10</td>
+    <td>10</td>
+    <td>0</td>
+    <td class="pct-good">100%</td>
+    <td>35.7</td>
+    <td><span class="badge badge-pass">PASS</span></td>
+  </tr>
+  <tr>
+    <td>adb_reboot_stability_20260517_074656.log</td>
+    <td>07:46:56</td>
+    <td>Alpaca TAC</td>
+    <td>10</td>
+    <td>10</td>
+    <td>0</td>
+    <td class="pct-good">100%</td>
+    <td>34.2</td>
+    <td><span class="badge badge-pass">PASS</span></td>
+  </tr>
+  <tr>
+    <td>adb_reboot_stability_20260517_174045.log</td>
+    <td>17:40:45</td>
+    <td>Alpaca TAC</td>
+    <td>20</td>
+    <td>16</td>
+    <td>4</td>
+    <td class="pct-warn">80%</td>
+    <td>33.4 (passes only)</td>
+    <td><span class="badge badge-fail">4 FAILURES</span></td>
+  </tr>
+</table>
+
+<!-- ── Run 1 detail ── -->
+<h2>Cycle Detail</h2>
+
+<div class="run-block">
+  <div class="run-header">
+    <span class="run-title">Run 1 — adb_reboot_stability_20260517_071138.log</span>
+    <span class="run-meta">07:11:38 · adb reboot · 10 iterations · ABORTED</span>
+  </div>
+  <table class="cycle-table">
+    <tr><th>#</th><th>Result</th><th>Online</th><th>Uptime</th><th>Timestamp</th></tr>
+    <tr class="c-fail">
+      <td>1</td>
+      <td><span class="badge badge-abort">ABORT</span></td>
+      <td>&gt;90s</td>
+      <td>—</td>
+      <td>07:13:14</td>
+    </tr>
+    <tr>
+      <td colspan="5" style="color:#555;font-style:italic;font-size:0.85em">
+        Cycles 2–10 not reached — test exited after timeout on cycle 1
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- ── Run 2 detail ── -->
+<div class="run-block">
+  <div class="run-header">
+    <span class="run-title">Run 2 — adb_reboot_stability_20260517_071720.log</span>
+    <span class="run-meta">07:17:20 · Alpaca TAC · 10/10 PASS</span>
+  </div>
+  <table class="cycle-table">
+    <tr><th>#</th><th>Result</th><th>Online (s)</th><th>Uptime (s)</th><th>Timestamp</th></tr>
+    <tr class="c-pass"><td>1</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.35</td><td>07:18:07</td></tr>
+    <tr class="c-pass"><td>2</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.34</td><td>07:18:53</td></tr>
+    <tr class="c-pass"><td>3</td><td><span class="badge badge-pass">PASS</span></td><td>36</td><td>31.37</td><td>07:19:42</td></tr>
+    <tr class="c-pass"><td>4</td><td><span class="badge badge-pass">PASS</span></td><td>36</td><td>31.29</td><td>07:20:31</td></tr>
+    <tr class="c-pass"><td>5</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.33</td><td>07:21:18</td></tr>
+    <tr class="c-pass"><td>6</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.25</td><td>07:22:05</td></tr>
+    <tr class="c-pass"><td>7</td><td><span class="badge badge-pass">PASS</span></td><td>36</td><td>31.28</td><td>07:22:54</td></tr>
+    <tr class="c-pass"><td>8</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.33</td><td>07:23:40</td></tr>
+    <tr class="c-pass"><td>9</td><td><span class="badge badge-pass">PASS</span></td><td>45</td><td>40.43</td><td>07:24:38</td></tr>
+    <tr class="c-pass"><td>10</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.32</td><td>07:25:24</td></tr>
+  </table>
+</div>
+
+<!-- ── Run 3 detail ── -->
+<div class="run-block">
+  <div class="run-header">
+    <span class="run-title">Run 3 — adb_reboot_stability_20260517_074656.log</span>
+    <span class="run-meta">07:46:56 · Alpaca TAC · 10/10 PASS</span>
+  </div>
+  <table class="cycle-table">
+    <tr><th>#</th><th>Result</th><th>Online (s)</th><th>Uptime (s)</th><th>Timestamp</th></tr>
+    <tr class="c-pass"><td>1</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.37</td><td>07:47:43</td></tr>
+    <tr class="c-pass"><td>2</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.35</td><td>07:48:30</td></tr>
+    <tr class="c-pass"><td>3</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.35</td><td>07:49:16</td></tr>
+    <tr class="c-pass"><td>4</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.26</td><td>07:50:02</td></tr>
+    <tr class="c-pass"><td>5</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.34</td><td>07:50:50</td></tr>
+    <tr class="c-pass"><td>6</td><td><span class="badge badge-pass">PASS</span></td><td>45</td><td>40.45</td><td>07:51:48</td></tr>
+    <tr class="c-pass"><td>7</td><td><span class="badge badge-pass">PASS</span></td><td>36</td><td>31.37</td><td>07:52:37</td></tr>
+    <tr class="c-pass"><td>8</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.35</td><td>07:53:24</td></tr>
+    <tr class="c-pass"><td>9</td><td><span class="badge badge-pass">PASS</span></td><td>36</td><td>31.38</td><td>07:54:13</td></tr>
+    <tr class="c-pass"><td>10</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.34</td><td>07:54:59</td></tr>
+  </table>
+</div>
+
+<!-- ── Run 4 detail ── -->
+<div class="run-block">
+  <div class="run-header">
+    <span class="run-title">Run 4 — adb_reboot_stability_20260517_174045.log</span>
+    <span class="run-meta">17:40:45 · Alpaca TAC · 16/20 PASS · 4 FAILURES</span>
+  </div>
+  <table class="cycle-table">
+    <tr><th>#</th><th>Result</th><th>Online (s)</th><th>Uptime (s)</th><th>Timestamp</th></tr>
+    <tr class="c-pass"><td>1</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.24</td><td>17:41:32</td></tr>
+    <tr class="c-pass"><td>2</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.32</td><td>17:42:18</td></tr>
+    <tr class="c-pass"><td>3</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.29</td><td>17:43:05</td></tr>
+    <tr class="c-pass"><td>4</td><td><span class="badge badge-pass">PASS</span></td><td>36</td><td>31.37</td><td>17:43:54</td></tr>
+    <tr class="c-pass"><td>5</td><td><span class="badge badge-pass">PASS</span></td><td>36</td><td>31.38</td><td>17:44:43</td></tr>
+    <tr class="c-fail"><td>6</td><td><span class="badge badge-fail">FAIL</span></td><td>&gt;180s</td><td>—</td><td>17:47:57</td></tr>
+    <tr class="c-pass"><td>7</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.37</td><td>17:48:44</td></tr>
+    <tr class="c-pass"><td>8</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.28</td><td>17:49:31</td></tr>
+    <tr class="c-fail"><td>9</td><td><span class="badge badge-fail">FAIL</span></td><td>&gt;180s</td><td>—</td><td>17:52:45</td></tr>
+    <tr class="c-pass"><td>10</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.36</td><td>17:53:31</td></tr>
+    <tr class="c-pass"><td>11</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.36</td><td>17:54:17</td></tr>
+    <tr class="c-pass"><td>12</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.37</td><td>17:55:04</td></tr>
+    <tr class="c-pass"><td>13</td><td><span class="badge badge-pass">PASS</span></td><td>36</td><td>31.38</td><td>17:55:53</td></tr>
+    <tr class="c-pass"><td>14</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.35</td><td>17:56:39</td></tr>
+    <tr class="c-pass"><td>15</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.36</td><td>17:57:25</td></tr>
+    <tr class="c-fail"><td>16</td><td><span class="badge badge-fail">FAIL</span></td><td>&gt;180s</td><td>—</td><td>18:00:39</td></tr>
+    <tr class="c-fail"><td>17</td><td><span class="badge badge-fail">FAIL</span></td><td>&gt;180s</td><td>—</td><td>18:03:53</td></tr>
+    <tr class="c-pass"><td>18</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.36</td><td>18:04:39</td></tr>
+    <tr class="c-pass"><td>19</td><td><span class="badge badge-pass">PASS</span></td><td>33</td><td>28.36</td><td>18:05:25</td></tr>
+    <tr class="c-pass"><td>20</td><td><span class="badge badge-pass">PASS</span></td><td>36</td><td>31.37</td><td>18:06:15</td></tr>
+  </table>
+</div>
+
+<!-- ── Key findings ── -->
+<h2>Key Findings</h2>
+<table>
+  <tr><th>Finding</th><th>Detail</th></tr>
+  <tr>
+    <td>adb reboot — unreliable</td>
+    <td class="note-fail">Failed on cycle 1 (timeout &gt;90s). Test aborted. Not suitable for this platform.</td>
+  </tr>
+  <tr>
+    <td>Alpaca TAC — recommended</td>
+    <td style="color:#4ec9b0">36/40 pass (90%) across three Alpaca runs. Consistent and recoverable.</td>
+  </tr>
+  <tr>
+    <td>Typical boot-to-ADB</td>
+    <td>33 s (normal) · 36 s (occasional) · 45 s (rare slow cycle, still passes)</td>
+  </tr>
+  <tr>
+    <td>Timeout failures (Run 4)</td>
+    <td class="note-fail">4 cycles exceeded 180 s timeout (cycles 6, 9, 16, 17). Cycles 16–17 were consecutive. Device recovered on next cycle in all cases.</td>
+  </tr>
+  <tr>
+    <td>Alpaca boot timeout recommendation</td>
+    <td style="color:#dcdcaa">Current 180 s catches all normal boots but missed 4 in Run 4. Consider retry-on-timeout rather than hard fail.</td>
+  </tr>
+</table>
+
+<footer>Source logs: logs/ &nbsp;|&nbsp; Device: bbc3d4d2 &nbsp;|&nbsp; Alpaca SN: FTAGZXRO &nbsp;|&nbsp; Generated 2026-05-17</footer>
+
+</body>
+</html>

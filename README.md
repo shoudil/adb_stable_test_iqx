@@ -87,4 +87,4 @@ Tested on **X1E80100 EVK** (2026-05-17, device `bbc3d4d2`, Alpaca SN `FTAGZXRO`)
 
 Device recovered on the next cycle in all four cases.
 
-See the **[aggregated HTML report](summary/adb_reboot_stability_summary.html)** for per-cycle detail across all runs.
+See the **[aggregated HTML report](summary/adb_reboot_stability_summary.html)** for per-cycle detail across all runs. You can open it by brower application.

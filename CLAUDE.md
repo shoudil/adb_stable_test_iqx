@@ -36,7 +36,7 @@ The script is a single bash file (`adb_reboot_stability_test.sh`) with this flow
 4. **ADB poll loop** — polls `adb -s <DEVICE> get-state` every 3s up to `BOOT_TIMEOUT` (180s)
 5. **Shell verify** — runs `adb shell echo "ok_<N>"` and reads `/proc/uptime` to confirm usable ADB
 
-## Key Findings (from `sumary/adb_reboot_stability_results.md`)
+## Key Findings (from `summary/adb_reboot_stability_results.md`)
 
 - `adb reboot` is **unreliable** on this platform — device did not reconnect within 90s timeout.
 - Alpaca hardware power cycle (`power_off` → 5s → `power_on`) is the **recommended** method — 20/20 pass rate.

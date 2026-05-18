@@ -1,0 +1,58 @@
+Abnormal log:
+
+# systemctl status android-tools-adbd
+3008;start=e4ee6ba3-ac65-4e89-b2d4-9d71d385cd7a;machineid=8961eae81cfb40458d1e6dc85a346d0b;user=root;hostname=iq-x7181-evk;bootid=10f58190-3eb0-43be-b943-ba0
+* android-tools-adbd.service - Android Debug Bridge=/root
+     Loaded: loaded (8;;file://iq-x7181-evk/usr/lib/systemd/system/android-tools-adbd.service/usr/lib/systemd/system/android-tools-adbd.service8;;; enabled;
+preset: enabled)8;;
+    Drop-In: /usr/lib/systemd/system/android-tools-adbd.service.d
+             `-8;;file://iq-x7181-evk/usr/lib/systemd/system/android-tools-adbd.service.d/10-adbd-configfs.conf10-adbd-configfs.conf8;;, 8;;file://iq-x7181-e
+vk/usr/lib/systemd/system/android-tools-adbd.service.d/50-adbd-cmdline.conf50-adbd-cmdline.conf8;;8;;
+     Active: active (running) since Thu 2026-05-14 01:20:14 UTC; 3h 22min ago
+ Invocation: dafdbcdd9de7468d97093be9cae562a9
+    Process: 770 ExecStartPre=/usr/bin/android-gadget-setup adb (code=exited, status=0/SUCCESS)
+    Process: 856 ExecStartPre=/usr/bin/android-gadget-setup (code=exited, status=0/SUCCESS)
+    Process: 922 ExecStartPost=/usr/bin/android-gadget-start (code=exited, status=0/SUCCESS)
+   Main PID: 921 (adbd)
+      Tasks: 55:245m (limit: 76190)
+     Memory: 10.2M (peak: 13.9M)
+        CPU: 5min 35.858s
+     CGroup: /system.slice/android-tools-adbd.service
+             `-5:245m921 /usr/bin/adbd
+
+May 14 04:42:28 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:28   921   921 usb.cpp:199] UsbFfsConnection being destroyed
+May 14 04:42:28 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:28   921   931 usb_ffs.cpp:281] opening control endpoint /dev/usb-ffs/adb/ep0
+May 14 04:42:28 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:28   921   931 usb.cpp:184] UsbFfsConnection constructed
+May 14 04:42:29 iq-x7181-evk adbd[921]: adbd W 05-14 04:42:29   921 12226 usb.cpp:295] timed out while waiting for FUNCTIONFS_BIND, trying again
+May 14 04:42:29 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:29   921 12226 transport.cpp:695] UsbFfs: connection terminated: monitor thread finished
+May 14 04:42:29 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:29   921   921 adb.cpp:108] UsbFfs: already offline
+May 14 04:42:29 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:29   921   921 transport.cpp:779] destroying transport UsbFfs
+May 14 04:42:29 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:29   921   921 usb.cpp:199] UsbFfsConnection being destroyed
+May 14 04:42:29 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:29   921   931 usb_ffs.cpp:281] opening control endpoint /dev/usb-ffs/adb/ep0
+May 14 04:42:29 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:29   921   931 usb.cpp:184] UsbFfsConnection constructed
+
+
+
+Normal:
+root@iq-x7181-evk:/# systemctl status android-tools-adbd
+* android-tools-adbd.service - Android Debug Bridge
+     Loaded: loaded (/usr/lib/systemd/system/android-tools-adbd.service; enabled; preset: enabled)
+    Drop-In: /usr/lib/systemd/system/android-tools-adbd.service.d
+             `-10-adbd-configfs.conf, 50-adbd-cmdline.conf
+     Active: active (running) since Thu 2026-05-14 00:59:18 UTC; 23min ago
+ Invocation: 4ec79103ebc54565b68df917578729d7
+    Process: 773 ExecStartPre=/usr/bin/android-gadget-setup adb (code=exited, status=0/SUCCESS)
+    Process: 862 ExecStartPre=/usr/bin/android-gadget-setup (code=exited, status=0/SUCCESS)
+    Process: 915 ExecStartPost=/usr/bin/android-gadget-start (code=exited, status=0/SUCCESS)
+   Main PID: 914 (adbd)
+      Tasks: 10 (limit: 76190)
+     Memory: 21.7M (peak: 23M)
+        CPU: 625ms
+     CGroup: /system.slice/android-tools-adbd.service
+             |- 914 /usr/bin/adbd
+             |-1696 -/bin/sh
+             |-1755 systemctl status android-tools-adbd
+             `-1756 less
+
+Notice: journal has been rotated since unit was started, output may be incomplete.
+root@iq-x7181-evk:/#

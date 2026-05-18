@@ -31,28 +31,53 @@ May 14 04:42:29 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:29   921   921 usb.cp
 May 14 04:42:29 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:29   921   931 usb_ffs.cpp:281] opening control endpoint /dev/usb-ffs/adb/ep0
 May 14 04:42:29 iq-x7181-evk adbd[921]: adbd I 05-14 04:42:29   921   931 usb.cpp:184] UsbFfsConnection constructed
 
+root@iq-x7181-evk:/data# ls /sys/class/udc/
+a000000.usb  a600000.usb  a800000.usb
+root@iq-x7181-evk:/data# cat /sys/kernel/config/usb_gadget/adb/UDC
+
+root@iq-x7181-evk:/data#
 
 
-Normal:
+Normal Case:
+
 root@iq-x7181-evk:/# systemctl status android-tools-adbd
+root@iq-x7181-evk:~# systemctl status[   37.858522] VREG_RTMR0_1P15: disabling
+[   37.862544] VREG_RTMR0_1P8: disabling
+[   37.866447] VREG_RTMR0_3P3: disabling
+ android-tools[   41.442574] gcc-x1e80100 100000.clock-controller: sync_state() pending due to 3d6a000.gmu
+[   41.451018] gpucc-x1e80100 3d90000.clock-controller: sync_state() pending due to 3d6a000.gmu
+[   41.459817] camcc-x1e80100 ade0000.clock-controller: sync_state() pending due to 4-001a
+-adbd
 * android-tools-adbd.service - Android Debug Bridge
      Loaded: loaded (/usr/lib/systemd/system/android-tools-adbd.service; enabled; preset: enabled)
     Drop-In: /usr/lib/systemd/system/android-tools-adbd.service.d
              `-10-adbd-configfs.conf, 50-adbd-cmdline.conf
-     Active: active (running) since Thu 2026-05-14 00:59:18 UTC; 23min ago
- Invocation: 4ec79103ebc54565b68df917578729d7
-    Process: 773 ExecStartPre=/usr/bin/android-gadget-setup adb (code=exited, status=0/SUCCESS)
-    Process: 862 ExecStartPre=/usr/bin/android-gadget-setup (code=exited, status=0/SUCCESS)
-    Process: 915 ExecStartPost=/usr/bin/android-gadget-start (code=exited, status=0/SUCCESS)
-   Main PID: 914 (adbd)
-      Tasks: 10 (limit: 76190)
-     Memory: 21.7M (peak: 23M)
-        CPU: 625ms
+     Active: active (running) since Thu 2026-05-14 17:04:16 UTC; 16s ago
+ Invocation: 236cdf2286534e368d8a989263c7d2ef
+    Process: 768 ExecStartPre=/usr/bin/android-gadget-setup adb (code=exited, status=0/SUCCESS)
+    Process: 849 ExecStartPre=/usr/bin/android-gadget-setup (code=exited, status=0/SUCCESS)
+    Process: 885 ExecStartPost=/usr/bin/android-gadget-start (code=exited, status=0/SUCCESS)
+   Main PID: 884 (adbd)
+      Tasks: 6 (limit: 76190)
+     Memory: 12.1M (peak: 13.9M)
+        CPU: 438ms
      CGroup: /system.slice/android-tools-adbd.service
-             |- 914 /usr/bin/adbd
-             |-1696 -/bin/sh
-             |-1755 systemctl status android-tools-adbd
-             `-1756 less
+             `-884 /usr/bin/adbd
 
-Notice: journal has been rotated since unit was started, output may be incomplete.
+May 14 17:04:15 iq-x7181-evk adbd[884]: adbd I 05-14 17:04:15   884   884 transport.cpp:779] destroying transport UsbFfs
+May 14 17:04:15 iq-x7181-evk adbd[884]: adbd I 05-14 17:04:15   884   884 usb.cpp:199] UsbFfsConnection being destroyed
+May 14 17:04:16 iq-x7181-evk adbd[884]: adbd I 05-14 17:04:16   884   892 usb_ffs.cpp:281] opening control endpoint /dev/usb-ffs/adb/ep0
+May 14 17:04:16 iq-x7181-evk adbd[884]: adbd I 05-14 17:04:16   884   892 usb.cpp:184] UsbFfsConnection constructed
+May 14 17:04:16 iq-x7181-evk android-gadget-start[885]: Binding Gadget to UDC: a000000.usb (maximum_speed='super-speed-plus')
+May 14 17:04:16 iq-x7181-evk adbd[884]: adbd I 05-14 17:04:16   884  1203 usb.cpp:316] USB event: FUNCTIONFS_BIND
+May 14 17:04:16 iq-x7181-evk systemd[1]: Started Android Debug Bridge.
+May 14 17:04:16 iq-x7181-evk adbd[884]: adbd I 05-14 17:04:16   884  1203 usb.cpp:316] USB event: FUNCTIONFS_ENABLE
+May 14 17:04:17 iq-x7181-evk adbd[884]: adbd I 05-14 17:04:17   884   884 adb.cpp:108] UsbFfs: already offline
+May 14 17:04:17 iq-x7181-evk adbd[884]: adbd I 05-14 17:04:17   884   884 adb.cpp:301] authentication not required
 root@iq-x7181-evk:/#
+
+root@iq-x7181-evk:/data# ls /sys/class/udc/
+a000000.usb  a600000.usb  a800000.usb
+root@iq-x7181-evk:/data# cat /sys/kernel/config/usb_gadget/adb/UDC
+a000000.usb
+root@iq-x7181-evk:/data#
